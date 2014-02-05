@@ -1,0 +1,9 @@
+{
+  "name": "houston",
+  "version": "0.0.0",
+  "dependencies": {
+    "jquery": "~2.1.0",
+    "backbone.marionette": "~1.6.0",
+    "modernizr": "~2.7.1"
+  }
+}
