@@ -1,4 +1,13 @@
 exports.index = function(req, res){
 
-  res.render('index');
+  Soundcloud = require("../modules/soundcloud.js");
+  soundcloud = new Soundcloud();
+  var query = "darkside";
+  soundcloud.query(query, function(data){
+
+    res.send({
+      data: data
+    });
+  });
 };
+

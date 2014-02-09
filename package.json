@@ -15,7 +15,10 @@
     "gulp-coffee": "~1.4.1",
     "gulp-concat": "~2.1.7",
     "gulp-util": "~2.2.14",
-    "gulp-uglify": "~0.2.0"
+    "gulp-uglify": "~0.2.0",
+    "soundclouder": "~0.7.10",
+    "querystring": "~0.2.0",
+    "http": "0.0.0"
   },
   "devDependencies": {},
   "scripts": {
