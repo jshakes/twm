@@ -1,0 +1,21 @@
+// =======================
+// $Variables
+// =======================
+
+// Global $Transitions
+.transition {
+	-webkit-transition: 0.25s all ease;
+	-moz-transition: 		0.25s all ease;
+	-ms-transition: 		0.25s all ease;
+	-o-transition: 			0.25s all ease;
+	transition: 				0.25s all ease;
+}
+
+
+
+// $Box-Sizing
+.box-sizing{
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}

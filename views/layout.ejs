@@ -14,9 +14,49 @@
     <%-stylesheets%>
   </head>
   <body>
+    <div id="about" class="drawer-hidden drawer">
+      <div class="wrapper">
+        <h2>Create limited-time mixes to enjoy with a&nbsp;friend.</h2>
+        <p>Here's how it works: <span>1</span> create a mix (three songs), <span>2</span> select a date/time to play the mix, and <span>3</span> choose a friend to listen with in real-time. Once the mix ends it's gone forever. So, enjoy it while it lasts.</p>
+      </div>
+    </div>
 
-    <%-body -%>
+    <div id="login" class="drawer-hidden drawer">
+      <a class="button login-button" href="">Login with Twitter</a>
+    </div>
 
+    <header class="main-header">
+      <div class="wrapper">
+        <h1 class="logo">
+          <a href="/">Track With Me</a><span>Beta</span>
+        </h1>
+        <nav class="main-nav">
+          <ul>
+            <li>
+              <a class="nav-list-link" href="/my-dates">
+                <i aria-hidden="true" class="icon icon-menu"></i>
+                <span class="screen-reader-text">View my list of dates</span>
+              </a>
+            </li>
+            <li>
+              <a class="nav-login-link nav-link nav-drawer-link" href="#login">
+                <i aria-hidden="true" class="icon icon-login"></i>
+                <span class="screen-reader-text">Login or Logout</span>
+              </a>
+            </li>
+            <li>
+              <a class="nav-about-link nav-link nav-drawer-link" href="#about">
+                <i aria-hidden="true" class="icon icon-about"></i>
+                <span class="screen-reader-text">What is Track With Me?</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <div class="wrapper">
+      <%-body%>
+    </div>
     <script src="js/vendors.js"></script>
     <script src="js/app.js"></script>
     <%-scripts%>

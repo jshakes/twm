@@ -26,7 +26,7 @@ gulp.task("compass", function() {
 
 // Vendors
 gulp.task("vendors", function() {
-  
+
   gulp.src([
       "./bower_components/modernizr/modernizr.js",
       "./bower_components/jquery/jquery.js",

@@ -1,11 +1,29 @@
-// Compass imports
+// =======================
+// $Common
+// =======================
+@import "common/media-queries";
+@import "common/colors";
+@import "common/variables";
+@import "common/fonts";
+@import "common/typography";
+@import "common/states";
+@import "common/mixins";
+@import "common/classes";
+@import "common/icons";
 
-@import "compass/reset";
+// =======================
+// $Base
+// =======================
+@import "base/base";
+@import "base/normalize";
 
-// Custom stylesheets
+// =======================
+// $Layout
+// =======================
+@import "layout/layout";
 
-@import "variables";
-@import "mixins";
-@import "defaults";
-@import "classes";
-@import "layout";
+// =======================
+// $Modules
+// =======================
+@import "modules/date";
+@import "modules/header";
