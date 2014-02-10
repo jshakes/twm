@@ -3,7 +3,8 @@ var Soundcloud = (function(){
   function soundcloud(opts){
 
     opts = opts || {};
-    this.host = 'api.soundcloud.com';
+    this.host = "api.soundcloud.com";
+    this.limit = typeof(opts.limit) == "number" ? opts.limit : 50;
     this.client_id = typeof(opts.client_id) == "string" ? opts.client_id : "ce00c34ab0935df23757e77d51e50b8a";
   }
 
@@ -21,7 +22,10 @@ var Soundcloud = (function(){
 
     // Append the client ID to the params
     params = opts.params || {};
+    // Append the client ID to the params
     params.client_id = this.client_id;
+    // Set the result limit
+    params.limit = this.limit;
 
     var http_opts = {
       method: "GET",
@@ -31,6 +35,27 @@ var Soundcloud = (function(){
     return http_opts;
   }
 
+  soundcloud.prototype.sort_results = function(data){
+
+    var clean_data = new Array();
+    var tracks = data;
+    for (key in tracks) {
+      
+      var track, result = {};
+      // Extract the data we want for the feed
+      track = tracks[key];
+      result.id = track.id;
+      result.url = track.permalink_url;
+      result.source = "soundcloud";
+      result.title = track.title;
+      result.duration = track.duration / 1000;
+      result.thumbnail = track.artwork_url;
+      // Push the result to the clean_data array
+      clean_data.push(result);
+    }
+    return clean_data;
+  }
+
   /**
     * Query
     * Queries the Soundcloud track library with a query string
@@ -38,12 +63,18 @@ var Soundcloud = (function(){
   */
   soundcloud.prototype.query = function(query, callback_fn){
 
+    var _this = this;
     http_opts = this.make_get({
       path: "tracks",
       params: {q: query}
     });
     request = require("./request.js");
-    request(http_opts, callback_fn);
+    // Request the data, then sort it and return it in the callback
+    request(http_opts, function(data){
+
+      clean_data = _this.sort_results(data);
+      callback_fn(clean_data);
+    });
   }
   return soundcloud;
 })();

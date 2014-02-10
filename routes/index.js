@@ -1,17 +1,3 @@
-exports.index = function(req, res){
-
-  Soundcloud = require("../modules/soundcloud.js");
-  soundcloud = new Soundcloud();
-  var query = "darkside";
-
-  Youtube = require("../modules/youtube.js");
-  youtube = new Youtube();
-
-  youtube.query(query, function(data){
-
-    res.send({
-      data: data
-    });
-  });
-};
-
+// Bundle all our routes into a hash so we don't have to manualy require all route files
+var require_directory = require('require-directory');
+module.exports = require_directory(module);
