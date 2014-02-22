@@ -36,7 +36,7 @@ var Youtube = (function(){
     return http_opts;
   }
 
-  youtube.prototype.sort_results = function(data){
+  youtube.prototype.parse = function(data){
 
     var clean_data = new Array();
     var videos = data.feed.entry;
@@ -46,6 +46,7 @@ var Youtube = (function(){
 
       // Extract the data we want for the feed
       video = videos[key];
+      result.id = video.id.$t.split("/videos/")[1];
       result.url = video.link[0].href;
       result.source = "youtube";
       result.title = video.title.$t;
@@ -68,7 +69,7 @@ var Youtube = (function(){
     request = require("./request.js");
     request(http_opts, function(data){
 
-      clean_data = _this.sort_results(data);
+      clean_data = _this.parse(data);
       callback_fn(clean_data);
     });
   }

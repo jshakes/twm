@@ -32,3 +32,4 @@ Routes
 
 app.get("/", routes.home.home);
 app.get("/search", routes.search.search_by_string);
+app.get("/new-playlist", routes.playlist.new_playlist);

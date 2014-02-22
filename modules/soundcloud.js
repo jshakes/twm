@@ -35,7 +35,7 @@ var Soundcloud = (function(){
     return http_opts;
   }
 
-  soundcloud.prototype.sort_results = function(data){
+  soundcloud.prototype.parse = function(data){
 
     var clean_data = new Array();
     var tracks = data;
@@ -72,7 +72,7 @@ var Soundcloud = (function(){
     // Request the data, then sort it and return it in the callback
     request(http_opts, function(data){
 
-      clean_data = _this.sort_results(data);
+      clean_data = _this.parse(data);
       callback_fn(clean_data);
     });
   }

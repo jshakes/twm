@@ -4,13 +4,7 @@ var concat = require("gulp-concat");
 var coffee = require("gulp-coffee");
 var compass = require("gulp-compass");
 var uglify = require('gulp-uglify');
-
-// Concat & Compile coffee
-gulp.task("coffee", function() {
-  gulp.src("./src/**/*.coffee")
-    .pipe(concat("app.coffee"))
-    .pipe(coffee({bare: true}).on("error", gutil.log))
-    .pipe(gulp.dest("./public/js/"))
+ulp.dest("./public/js/"))
 });
 
 // Concat & Compile Compass
@@ -24,8 +18,8 @@ gulp.task("compass", function() {
     .pipe(gulp.dest("./public/css/"));
 });
 
-// Vendors
-gulp.task("vendors", function() {
+// Concat vendor files and libs
+gulp.task("concat_vendors", function() {
 
   gulp.src([
       "./bower_components/modernizr/modernizr.js",
@@ -39,10 +33,17 @@ gulp.task("vendors", function() {
     .pipe(gulp.dest("./public/js/"));
 });
 
+// Concat JS
+gulp.task("concat_js", function(){
+
+  gulp.src("./src/**/*.js").pipe(concat("app.js")).pipe(gulp.dest("./public/js/"));
+
+});
+
 // Default
-gulp.task("default", ["vendors", "coffee", "compass"]);
+gulp.task("default", ["concat_vendors", "concat_js", "compass"]);
 
 // Watch Coffee Files
-gulp.watch("./src/**/*.coffee", ["coffee"]);
+gulp.watch("./src/**/*.js", ["concat_js"]);
 // Watch SCSS Files
 gulp.watch("./src/**/*.scss", ["compass"]);
