@@ -1,5 +1,5 @@
 .DS_Store
-js/
+/js/
 css/
 node_modules/
 bower_components/
