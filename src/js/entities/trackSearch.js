@@ -1,4 +1,4 @@
-TwM.module("Entities", function(Entities, TwM, Backbone, Marionette, $, _){
+TWM.module("Entities", function(Entities, TWM, Backbone, Marionette, $, _){
 
   // Search result
   Entities.trackSearchResult = Backbone.Model.extend();
@@ -47,7 +47,7 @@ TwM.module("Entities", function(Entities, TwM, Backbone, Marionette, $, _){
 
   // Set our req/res handlers
 
-  TwM.reqres.setHandler("newTrackSearch:entities", function(query){ 
+  TWM.reqres.setHandler("newTrackSearch:entities", function(query){ 
     
     return API.newTrackSearch(query);
   });

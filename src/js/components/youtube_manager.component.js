@@ -1,8 +1,8 @@
-MS.module("Components", function(Components, Fortune, Backbone, Marionette, $, _){
+TWM.module("Components", function(Components, Fortune, Backbone, Marionette, $, _){
 
-  MS.Components.Youtube_Manager = (function(){
+  TWM.Components.Youtube_Manager = (function(){
 
-    function Youtube_Manager = function(opts){
+    function Youtube_Manager(opts){
 
     }
 

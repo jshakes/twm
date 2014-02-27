@@ -1,17 +1,19 @@
-TWM.module("Playlists.Create.TrackSearch", function(Playlists, TWM, Backbone, Marionette, $, _){
+TWM.module("Playlists.Create.TrackSearch", function(TrackSearch, TWM, Backbone, Marionette, $, _){
   
   // Declare a region to display our results in
-  var resultsRegion = Marionette.Region.extend({
+  var resultsRegion = new Marionette.Region({
     el: ".track-search-results"
   });
 
   var newSearchQuery = function(query){
 
-    var resultsCollection = TwM.req("newTrackSearch:entities", query);
-    var resultsView = new SearchResults({
+    var resultsCollection = TWM.request("newTrackSearch:entities", query);
+    var resultsView = new TrackSearch.SearchResults({
       collection: resultsCollection
     });
     resultsRegion.show(resultsView);
+    // Do the search, do it now
+    resultsCollection.fetch();
   }
 
   TrackSearch.on("start", function(){

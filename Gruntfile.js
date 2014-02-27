@@ -11,7 +11,7 @@ module.exports = function(grunt){
         }
       },
       concat_app: {
-        files: "_js/**/*",
+        files: "./src/js/**/*",
         tasks: "concat:app"
       }
     },

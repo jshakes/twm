@@ -1,6 +1,6 @@
-MS = new Marionette.Application();
+TWM = new Marionette.Application();
 
-MS.on("initialize:after", function(){
+TWM.on("initialize:after", function(){
 
-  console.log "Application started";
+  console.log("Application started");
 });

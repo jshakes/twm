@@ -2,5 +2,5 @@
 /js/
 css/
 node_modules/
-bower_components/
+src/lib/
 .sass-cache/
