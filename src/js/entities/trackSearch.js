@@ -1,7 +1,23 @@
 TWM.module("Entities", function(Entities, TWM, Backbone, Marionette, $, _){
 
   // Search result
-  Entities.trackSearchResult = Backbone.Model.extend();
+  Entities.trackSearchResult = Backbone.Model.extend({
+    /*
+    * Parse the response and add a human-readable 'minutes' value for the duration
+    */
+    parse: function(response){
+      response.minutes = this.secondsToMinutes(response.duration)
+      return response;
+    },
+    /*
+    * Convert seconds to human-readable minutes
+    */
+    secondsToMinutes: function(seconds){
+      var minutes = Math.floor(seconds / 60);
+      var remainderSeconds = Math.round(seconds - minutes * 60);
+      return minutes + ":" + remainderSeconds;
+    }
+  });
 
   // Search result collection
   Entities.trackSearchResults = Backbone.Collection.extend({
