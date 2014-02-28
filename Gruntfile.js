@@ -13,6 +13,10 @@ module.exports = function(grunt){
       concat_app: {
         files: "./src/js/**/*",
         tasks: "concat:app"
+      },
+      templates: {
+        files: "./src/templates/**/*",
+        tasks: "jsttojs:templates"
       }
     },
     compass: {
@@ -31,14 +35,22 @@ module.exports = function(grunt){
           "./src/lib/jquery/dist/jquery.js",
           "./src/lib/underscore/underscore.js",
           "./src/lib/backbone/backbone.js",
-          "./src/lib/backbone.marionette/lib/backbone.marionette.js"
+          "./src/lib/backbone.marionette/lib/backbone.marionette.js",
+          "./src/lib/ejs/ejs.js"
           ],
-        dest: "./public/js/vendor.js"
+        dest: "./public/js/vendors.js"
       },
       app: {
         src: "./src/js/**/*.js",
         dest: "./public/js/app.js"
       }
+    },
+    jsttojs: {
+      root: "src/templates",
+      output: "public/js/templates.js",
+      ext: "ejs",
+      name: "TWM.templates",
+      removebreak: true
     }
   });
 
@@ -46,6 +58,7 @@ module.exports = function(grunt){
   grunt.loadNpmTasks("grunt-contrib-sass");
   grunt.loadNpmTasks("grunt-contrib-compass");
   grunt.loadNpmTasks("grunt-contrib-concat");
+  grunt.loadNpmTasks("grunt-jsttojs");
 
-  grunt.registerTask("build", ["concat:vendor", "concat:app", "compass:dist"]);
+  grunt.registerTask("build", ["jsttojs", "concat:vendor", "concat:app", "compass:dist"]);
 }
