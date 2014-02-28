@@ -1,6 +1,6 @@
 .DS_Store
-/js/
-css/
+js/public/js
+js/public/css/
 node_modules/
 src/lib/
 .sass-cache/
