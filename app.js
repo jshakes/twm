@@ -23,6 +23,8 @@ app.configure(function(){
   app.set("view engine", "ejs");
   // Serve static files from /public
   app.use(express.static(__dirname + "/public"));
+  // Use URLencoded for post data
+  app.use(express.urlencoded());
 });
 /*
 ============================================
@@ -33,3 +35,4 @@ Routes
 app.get("/", routes.home.home);
 app.get("/search", routes.search.search_by_string);
 app.get("/new-playlist", routes.playlist.new_playlist);
+app.post("/process-new-playlist/", routes.playlist.process_new_playlist);
