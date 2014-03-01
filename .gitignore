@@ -1,5 +1,4 @@
 .DS_Store
-public/js
 public/css
 node_modules/
 src/lib/
