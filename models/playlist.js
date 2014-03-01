@@ -1,5 +1,5 @@
 var mongoose = require('mongoose')
-mongoose.connect('mongodb://127.0.0.1/track_with_me');
+mongoose.connect('mongodb://127.0.0.1/twm');
 
 var schema = new mongoose.Schema({
   title: String,

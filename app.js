@@ -36,3 +36,4 @@ app.get("/", routes.home.home);
 app.get("/search", routes.search.search_by_string);
 app.get("/new-playlist", routes.playlist.new_playlist);
 app.post("/process-new-playlist/", routes.playlist.process_new_playlist);
+app.get("/playlist/:id", routes.playlist.playlist);

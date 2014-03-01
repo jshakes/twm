@@ -1,11 +1,11 @@
+var Playlist = require("../models/playlist.js");
+
 exports.new_playlist = function(req, res){
 
   res.render("new-playlist");
 };
 
 exports.process_new_playlist = function(req, res){
-
-  var Playlist = require("../models/playlist.js");
 
   // Build the new playlist object from the POST data
   var newPlaylist = {
@@ -30,6 +30,18 @@ exports.process_new_playlist = function(req, res){
   playlistRow.save(function (err) {
 
     if (err) return next(err);
-    //res.redirect("/playlist/" + playlistRow._id)
+    res.redirect("/playlist/" + playlistRow._id);
+    console.log(playlistRow);
+
+  });
+}
+
+exports.playlist = function(req, res){
+
+  Playlist.findOne({id: req.params.playlist}, function(err, playlist){
+
+    if (err) return next(err);
+    console.log("queried" + playlist);
+    res.render("playlist", playlist);
   });
 }
