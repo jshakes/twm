@@ -7,9 +7,11 @@
     <!-- Track <%= i %> -->
     <label for="playlist-track-<%= i %>">Track <%= i %></label>
     <input data-index="<%= i %>" class="playlist-track-select" type="radio" name="track[]" id="playlist-track-<%= i %>" <% if(i == 0){ %>checked="checked"<% }; %>>
+    <input type="text" id="track-<%= i %>-title" name="track<%= i %>title" class="track-info-title">
     <input type="hidden" id="track-<%= i %>-id" name="track<%= i %>id">
     <input type="hidden" id="track-<%= i %>-source" name="track<%= i %>source">
-    <input type="text" disabled="disabled" id="track-<%= i %>-placeholder" name="track<%= i %>placeholder" class="track-info-placeholder">
+    <input type="hidden" id="track-<%= i %>-artwork" name="track<%= i %>artwork">
+    <input type="hidden" id="track-<%= i %>-duration" name="track<%= i %>duration">
   <% }; %>
   <input type="submit" value="Create Playlist!">
 </form>

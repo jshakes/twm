@@ -6,7 +6,7 @@ exports.new_playlist = function(req, res){
 };
 
 exports.process_new_playlist = function(req, res){
-
+  console.log(req.body);
   // Build the new playlist object from the POST data
   var newPlaylist = {
     title: req.body.title,
@@ -17,7 +17,10 @@ exports.process_new_playlist = function(req, res){
   for(var i = 0; i <= 2; i++){
     var track = {
       trackId: req.body["track" + i + "id"],
-      trackSource: req.body["track" + i + "source"]
+      source: req.body["track" + i + "source"],
+      title: req.body["track" + i + "title"],
+      artwork: req.body["track" + i + "artwork"],
+      duration: req.body["track" + i + "duration"],
     }
     playlistTracks.push(track);
   }
@@ -31,8 +34,6 @@ exports.process_new_playlist = function(req, res){
 
     if (err) return next(err);
     res.redirect("/playlist/" + playlistRow._id);
-    console.log(playlistRow);
-
   });
 }
 

@@ -16,14 +16,16 @@ TWM.module("Playlists.Create.TrackSearch", function(TrackSearch, TWM, Backbone, 
 
       e.preventDefault();
       var trackIndex = $(".playlist-track-select:checked").data("index");
-      var $trackIdInput = $("#track-" + trackIndex + "-id");
-      var $trackIdSource = $("#track-" + trackIndex + "-source");
-      var $trackIdPlaceholder = $("#track-" + trackIndex + "-placeholder");
-      // Add this track to the currently selected track slot
-      $trackIdInput.val(this.model.get("id"));
-      $trackIdSource.val(this.model.get("source"));
-      // Show the track info in the placeholder
-      $trackIdPlaceholder.val(this.model.get("title"));
+      var fields = ["id", "source", "title", "artwork", "duration"];
+
+      for(var i = 0; i < fields.length; i++){
+
+        var field = fields[i];
+        var $el = $("#track-" + trackIndex + "-" + field);
+        if(this.model.get(field) && $el.length){
+          $el.val(this.model.get(field));
+        }
+      }
     }
   });
 

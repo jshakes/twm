@@ -51,7 +51,7 @@ var Youtube = (function(){
       result.source = "youtube";
       result.title = video.title.$t;
       result.duration = video.media$group.media$content[0].duration;
-      result.thumbnail = video.media$group.media$thumbnail[0].url;
+      result.artwork = video.media$group.media$thumbnail[0].url;
       // Push the result to the clean_data array
       clean_data.push(result);
     }

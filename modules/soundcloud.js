@@ -49,7 +49,7 @@ var Soundcloud = (function(){
       result.source = "soundcloud";
       result.title = track.title;
       result.duration = track.duration / 1000;
-      result.thumbnail = track.artwork_url;
+      result.artwork = typeof(track.artwork_url) == "string" ? track.artwork_url.replace("-large.jpg", "-t300x300.jpg") : null;
       // Push the result to the clean_data array
       clean_data.push(result);
     }
