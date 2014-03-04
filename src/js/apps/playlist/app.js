@@ -1,3 +1,5 @@
-TWM.module("Playlists", function(Playlists, TWM, Backbone, Marionette, $, _){
+TWM.module("Playlist", function(Playlists, TWM, Backbone, Marionette, $, _){
+  
+  
   
 });

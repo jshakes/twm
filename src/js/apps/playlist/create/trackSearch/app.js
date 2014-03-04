@@ -1,4 +1,7 @@
-TWM.module("Playlists.Create.TrackSearch", function(TrackSearch, TWM, Backbone, Marionette, $, _){
+TWM.module("Playlist.Create.TrackSearch", function(TrackSearch, TWM, Backbone, Marionette, $, _){
+  
+  // prevent starting with parent
+  this.startWithParent = false;
   
   // Declare a region to display our results in
   var resultsRegion = new Marionette.Region({
