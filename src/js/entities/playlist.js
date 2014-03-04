@@ -1,7 +1,7 @@
 TWM.module("Entities", function(Entities, TWM, Backbone, Marionette, $, _){
 
   // Search result
-  Entities.trackSearchResult = Backbone.Model.extend({
+  Entities.Track = Backbone.Model.extend({
     /*
     * Parse the response and add a human-readable 'minutes' value for the duration
     */
@@ -19,9 +19,14 @@ TWM.module("Entities", function(Entities, TWM, Backbone, Marionette, $, _){
     }
   });
 
+  // Playlist (collection of tracks)
+  Entities.Playlist = Backbone.Collection.extend({
+    model: Entities.Track
+  })
+
   // Search result collection
-  Entities.trackSearchResults = Backbone.Collection.extend({
-    model: Entities.trackSearchResult,
+  Entities.TrackSearchResults = Backbone.Collection.extend({
+    model: Entities.Track,
     baseUrl: "/search/",
     query: "",
     url: function(){
@@ -53,11 +58,16 @@ TWM.module("Entities", function(Entities, TWM, Backbone, Marionette, $, _){
     */
     newTrackSearch: function(query){
 
-      var trackSearchResults = new Entities.trackSearchResults();
+      var trackSearchResults = new Entities.TrackSearchResults();
       if(typeof(query) == "string"){
         trackSearchResults.setQuery(query);
       }
       return trackSearchResults;
+    },
+    newPlaylist: function(models){
+
+      var playlist = new Entities.Playlist(models);
+      return playlist;
     }
   }
 
@@ -66,6 +76,11 @@ TWM.module("Entities", function(Entities, TWM, Backbone, Marionette, $, _){
   TWM.reqres.setHandler("newTrackSearch:entities", function(query){ 
     
     return API.newTrackSearch(query);
+  });
+
+  TWM.reqres.setHandler("newPlaylist:entities", function(models){ 
+    
+    return API.newPlaylist(models);
   });
 
 });

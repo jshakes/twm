@@ -1,4 +1,4 @@
-TWM.module("Playlist.Create", function(Playlists, TWM, Backbone, Marionette, $, _){
+TWM.module("Playlist.Create", function(Create, TWM, Backbone, Marionette, $, _){
   
   
   
