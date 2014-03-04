@@ -1,5 +1,11 @@
 {% extends 'layout.html' %}
 {% block content %}
 <h1>{{ title }}</h1>
-<p>{{ tracks|json_encode }}</p>
+<script>
+bootstrap = {{ tracks|raw }};
+</script>
+{% endblock %}
+
+{% block scripts %}
+<script>TWM.Playlist.start()</script>
 {% endblock %}

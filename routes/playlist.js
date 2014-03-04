@@ -39,7 +39,7 @@ exports.process_new_playlist = function(req, res){
 
 exports.playlist = function(req, res){
 
-  Playlist.findOne({id: req.params.playlist}, function(err, playlist){
+  Playlist.findOne({id: req.params.playlist}, "-tracks._id", function(err, playlist){
 
     if (err) return next(err);
     console.log("queried" + playlist);
