@@ -1,20 +1,22 @@
 {% extends 'layout.html' %}
 {% block content %}
 <h1>{{ title }}</h1>
-<ul class="track-list">
-{% for track in tracks %}
-  <li class="track" style="width: {{ track.duration / totalDuration * 100 }}%">
-    <h3 class="track-title">{{ track.title }}</h3>
-    <img class="track-thumb" src="{{ track.artwork }}" href="{{ track.title }}">
-  </li>
-{% endfor %}
-</ul>
-<button class="playlist-playpause">Play/pause</button>
+<section class="playlist">
+  <ul class="playlist-track-list">
+  {% for track in tracks %}
+    <li class="playlist-track" style="width: {{ track.duration / totalDuration * 100 }}%">
+      <h3 class="track-title">{{ track.title }}</h3>
+      <img class="track-artwork" src="{{ track.artwork }}" href="{{ track.title }}">
+    </li>
+  {% endfor %}
+  </ul>
+  <button class="playlist-playpause">Play/pause</button>
+</section>
 <script>
 bootstrap = [{{ tracks|raw }}];
 </script>
 {% endblock %}
 
 {% block scripts %}
-<script>TWM.Playlist.start()</script>
+<script>TWM.Playlist.start();</script>
 {% endblock %}

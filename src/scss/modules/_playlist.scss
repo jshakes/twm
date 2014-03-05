@@ -1,0 +1,11 @@
+.playlist-track-list{
+  @include ib-whitespace-fix($body_fs);
+}
+
+.playlist-track{
+  display: inline-block;
+}
+
+.track-artwork{
+  max-width: 100%;
+}
