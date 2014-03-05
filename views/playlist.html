@@ -1,6 +1,15 @@
 {% extends 'layout.html' %}
 {% block content %}
 <h1>{{ title }}</h1>
+<ul class="track-list">
+{% for track in tracks %}
+  <li class="track" style="width: {{ track.duration / totalDuration * 100 }}%">
+    <h3 class="track-title">{{ track.title }}</h3>
+    <img class="track-thumb" src="{{ track.artwork }}" href="{{ track.title }}">
+  </li>
+{% endfor %}
+</ul>
+<button class="playlist-playpause">Play/pause</button>
 <script>
 bootstrap = [{{ tracks|raw }}];
 </script>

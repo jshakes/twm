@@ -4,7 +4,7 @@
 <p>Search for tracks and add them into the 3 available slots in your playlist.</p>
 <form action="/process-new-playlist/" method="post">
   <input type="text" class="new-playlist-title" name="title" placeholder="Title">
-  {% for i in [1, 2, 3] %}
+  {% for i in [0, 1, 2] %}
     <!-- Track {{ i }} -->
     <label for="playlist-track-{{ i }}">Track {{ i }}</label>
     <input data-index="{{ i }}" class="playlist-track-select" type="radio" name="track[]" id="playlist-track-{{ i }}" {% if i == 0 %}checked="checked"{% endif %}>

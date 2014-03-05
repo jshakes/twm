@@ -12,6 +12,7 @@ exports.process_new_playlist = function(req, res){
     title: req.body.title,
     created: Date.now()
   }
+  var totalDuration = 0;
   // Get the track info (0, 1, 2)
   var playlistTracks = [];
   for(var i = 0; i <= 2; i++){
@@ -20,19 +21,25 @@ exports.process_new_playlist = function(req, res){
       source: req.body["track" + i + "source"],
       title: req.body["track" + i + "title"],
       artwork: req.body["track" + i + "artwork"],
-      duration: req.body["track" + i + "duration"],
+      duration: parseFloat(req.body["track" + i + "duration"]),
     }
+    console.log(track.duration);
+    totalDuration += track.duration;
     playlistTracks.push(track);
   }
 
   newPlaylist.tracks = playlistTracks;
+  newPlaylist.totalDuration = totalDuration;
 
   // Write it to the database, then redirect to that track page
   var playlistRow = new Playlist(newPlaylist);
 
   playlistRow.save(function (err) {
 
-    if (err) return next(err);
+    if (err){
+      console.log(err);
+      return err;
+    }
     res.redirect("/playlist/" + playlistRow._id);
   });
 }
@@ -40,9 +47,11 @@ exports.process_new_playlist = function(req, res){
 exports.playlist = function(req, res){
 
   Playlist.findOne({id: req.params.playlist}, "-tracks._id", function(err, playlist){
-
-    if (err) return next(err);
-    console.log("queried" + playlist);
+    
+    if (err){
+      console.log(err);
+      return err;
+    }
     res.render("playlist", playlist);
   });
 }
