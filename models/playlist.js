@@ -9,6 +9,7 @@ var schema = new mongoose.Schema({
     trackId: String,
     source: String,
     title: String,
+    url: String,
     artwork: String,
     duration: Number
   }]

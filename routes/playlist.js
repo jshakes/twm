@@ -20,6 +20,7 @@ exports.process_new_playlist = function(req, res){
       trackId: req.body["track" + i + "id"],
       source: req.body["track" + i + "source"],
       title: req.body["track" + i + "title"],
+      url: req.body["track" + i + "url"],
       artwork: req.body["track" + i + "artwork"],
       duration: parseFloat(req.body["track" + i + "duration"]),
     }

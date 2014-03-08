@@ -12,13 +12,15 @@ TWM.module("Playlist", function(Playlist, TWM, Backbone, Marionette, $, _){
     loadPlayer: function(playlist){
 
       var tracks = [];
-      for(track in playlist.models){
+      for(key in playlist.models){
 
+        var track = playlist.models[key];
         tracks.push(track.attributes);
       }
       var playlistManager = TWM.request("playlistManager:components", {
         tracks: tracks
       });
+      playlistManager.startPlaylist();
     }
   }
 

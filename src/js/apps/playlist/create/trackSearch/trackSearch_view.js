@@ -16,7 +16,7 @@ TWM.module("Playlist.Create.TrackSearch", function(TrackSearch, TWM, Backbone, M
 
       e.preventDefault();
       var trackIndex = $(".playlist-track-select:checked").data("index");
-      var fields = ["id", "source", "title", "artwork", "duration"];
+      var fields = ["id", "source", "title", "url", "artwork", "duration"];
 
       for(var i = 0; i < fields.length; i++){
 

@@ -9,3 +9,9 @@
 .track-artwork{
   max-width: 100%;
 }
+
+#playlist-embeds{
+  height: 0;
+  width: 0;
+  overflow: hidden;
+}
