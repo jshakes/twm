@@ -25,7 +25,7 @@ TWM.module("Playlist", function(Playlist, TWM, Backbone, Marionette, $, _){
     });
     $(".playlist-prev").on("click", function(){
 
-      playlistManager.next();
+      playlistManager.previous();
       console.log("Now playing " + playlistManager.getCurrentTrackData().title);
     });
   }

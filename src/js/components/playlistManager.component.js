@@ -15,18 +15,26 @@ TWM.module("Components", function(Components, TWM, Backbone, Marionette, $, _){
     PlaylistManager.prototype.startPlaylist = function() {
 
       this.playTrack(0);
+      $(this).on("ended:track", this.next);
     };
 
     PlaylistManager.prototype.playTrack = function(trackIndex) {
-
-      var track, pop;
+      
+      var track = this.getTrackData(trackIndex);
       this.emptyEmbedsEl();
-      track = this.getTrackData(trackIndex);
-      this.pop = this.getPopcorn(track.url);
-      this.pop.play();
+      var pop = this.getPopcorn(track.url, true);
+      if(track.source == "soundcloud") {
+        pop.on( "canplayall", function( event ) {
+          pop.play();
+        });
+      }
+      else {
+        pop.play();
+      }
+      this.pop = pop;
       this.isPlaying = true;
       this.setCurrentTrackIndex(trackIndex);
-      return pop;
+      return this.pop;
     };
 
     PlaylistManager.prototype.getTrackData = function(trackIndex) {
@@ -143,6 +151,12 @@ TWM.module("Components", function(Components, TWM, Backbone, Marionette, $, _){
     PlaylistManager.prototype.getPopcorn = function(trackUrl) {
 
       var pop = Popcorn.smart( "#" + this.embedsId, trackUrl);
+      pop.autoplay(false);
+      // Bind popcorn events to triggers on the this object
+      pop.on("ended", $.proxy(function(){
+
+        $(this).trigger("ended:track");
+      }, this));
       return pop;
     };
 

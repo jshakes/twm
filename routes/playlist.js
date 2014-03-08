@@ -47,7 +47,7 @@ exports.process_new_playlist = function(req, res){
 
 exports.playlist = function(req, res){
 
-  Playlist.findOne({id: req.params.playlist}, "-tracks._id", function(err, playlist){
+  Playlist.findById(req.params.id, "-tracks._id", function(err, playlist){
     
     if (err){
       console.log(err);
