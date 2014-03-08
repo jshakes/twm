@@ -36,8 +36,8 @@ TWM.module("Components", function(Components, TWM, Backbone, Marionette, $, _){
       else {
         pop.play();
       }
-      this.pop = pop;
       this.isPlaying = true;
+      this.pop = pop;
       this.setCurrentTrackIndex(trackIndex);
       return this.pop;
     };
@@ -78,14 +78,12 @@ TWM.module("Components", function(Components, TWM, Backbone, Marionette, $, _){
     PlaylistManager.prototype.pause = function() {
 
       this.pop.pause();
-      this.isPlaying = false;
       return this.getTrackData(this.getCurrentTrackIndex());
     };
 
     PlaylistManager.prototype.resume = function() {
 
       this.pop.play();
-      this.isPlaying = true;
       return this.getTrackData(this.getCurrentTrackIndex());
     };
 
@@ -159,10 +157,24 @@ TWM.module("Components", function(Components, TWM, Backbone, Marionette, $, _){
 
       var pop = Popcorn.smart( "#" + this.embedsId, trackUrl);
       pop.autoplay(false);
-      // Bind popcorn events to triggers on the this object
+      // Bind popcorn events to triggers on the 'this' object
       pop.on("ended", $.proxy(function(){
 
         $(this).trigger("ended:track");
+      }, this));
+      pop.on("playing", $.proxy(function(){
+
+        $(this).trigger("playing:track");
+        this.isPlaying = true;
+      }, this));
+      pop.on("pause", $.proxy(function(){
+
+        $(this).trigger("pause:track");
+        this.isPlaying = false;
+      }, this));
+      pop.on("timeupdate", $.proxy(function(){
+
+        $(this).trigger("timeupdate:track", pop.currentTime());
       }, this));
       return pop;
     };

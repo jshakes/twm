@@ -7,6 +7,9 @@
     <li class="playlist-track" style="width: {{ track.duration / totalDuration * 100 }}%">
       <h3 class="track-title">{{ track.title }}</h3>
       <img class="track-artwork" src="{{ track.artwork }}" href="{{ track.title }}">
+      <div class="progress-bar">
+        <div class="current-progress"></div>
+      </div>
     </li>
   {% endfor %}
   </ul>

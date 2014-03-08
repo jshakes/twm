@@ -28,6 +28,27 @@ TWM.module("Playlist", function(Playlist, TWM, Backbone, Marionette, $, _){
       playlistManager.previous();
       console.log("Now playing " + playlistManager.getCurrentTrackData().title);
     });
+
+    // Bind time updates to the progress bars
+    $(playlistManager).on("timeupdate:track", function(event, currentTime){
+
+      var trackIndex = playlistManager.getCurrentTrackIndex();
+      var trackData = playlistManager.getTrackData(trackIndex);
+      $(".playlist-track").each(function(i) {
+
+        var $progressBar = $(this).find(".current-progress");
+        // Set the previous tracks duration to 100%
+        if(i < trackIndex) {
+          $progressBar.width("100%");
+        }
+        // Update the current track's progress
+        else if(i == trackIndex) {
+
+          var trackProgress = currentTime / trackData.duration * 100;
+          $progressBar.width(trackProgress + "%");
+        }
+      });
+    });
   }
   
   Playlist.API = {

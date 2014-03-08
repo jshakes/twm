@@ -15,3 +15,15 @@
   //width: 0;
   overflow: hidden;
 }
+
+.progress-bar{
+  height: 10px;
+  background: #ccc;
+  .current-progress{
+    background: red;
+    height: 10px;
+    color: white;
+    width: 0;
+    font-size: .5em;
+  }
+}
