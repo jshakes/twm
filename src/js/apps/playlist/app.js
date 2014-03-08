@@ -47,6 +47,11 @@ TWM.module("Playlist", function(Playlist, TWM, Backbone, Marionette, $, _){
           var trackProgress = currentTime / trackData.duration * 100;
           $progressBar.width(trackProgress + "%");
         }
+        // Everything else should be 0
+        else {
+
+          $progressBar.width(0); 
+        }
       });
     });
   }
