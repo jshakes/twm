@@ -18,6 +18,11 @@ TWM.module("Components", function(Components, TWM, Backbone, Marionette, $, _){
       $(this).on("ended:track", this.next);
     };
 
+    PlaylistManager.prototype.stopPlaylist = function() {
+
+      $(this).unbind();
+    };
+
     PlaylistManager.prototype.playTrack = function(trackIndex) {
       
       var track = this.getTrackData(trackIndex);
@@ -129,6 +134,7 @@ TWM.module("Components", function(Components, TWM, Backbone, Marionette, $, _){
       }
       else {
 
+        this.stopPlaylist();
         return null;
       }
     }
@@ -144,6 +150,7 @@ TWM.module("Components", function(Components, TWM, Backbone, Marionette, $, _){
       }
       else {
 
+        this.stopPlaylist();
         return null;
       }
     }
