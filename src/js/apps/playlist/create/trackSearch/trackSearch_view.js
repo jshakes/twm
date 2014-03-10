@@ -8,24 +8,20 @@ TWM.module("Playlist.Create.TrackSearch", function(TrackSearch, TWM, Backbone, M
       "click .preview-track": "previewTrack",
       "click .track-search-result-add": "addTrack"
     },
-    previewTrack: function(){
+    previewTrack: function(e){
 
-      // Play the middle 10 seconds of the song
+      e.preventDefault();
+      this.pop = TrackSearch.Controller.previewTrack(this.model, 15);
+    },
+    stopPreview: function(e){
+
+      e.preventDefault();
+      TrackSearch.Controller.stopTrackPreview(this.pop);
     },
     addTrack: function(e){
 
       e.preventDefault();
-      var trackIndex = $(".playlist-track-select:checked").data("index");
-      var fields = ["id", "source", "title", "url", "artwork", "duration"];
-
-      for(var i = 0; i < fields.length; i++){
-
-        var field = fields[i];
-        var $el = $("#track-" + trackIndex + "-" + field);
-        if(this.model.get(field) && $el.length){
-          $el.val(this.model.get(field));
-        }
-      }
+      TrackSearch.Controller.addTrack(this.model);
     }
   });
 
