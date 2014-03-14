@@ -1,23 +1,9 @@
 // =======================
 // $Base Styles
 // =======================
-
-// $Body Styles
-
-
-
-
-// $Form Elements
-input, .input{
-	height: 30px;
-	text-indent: 8px;
-	font-size: 0.8em;
-	outline: none;
-	-webkit-font-smoothing: antialiased;
-	@extend .transition;
-
-	&:focus{
-		border: 1px solid grey;
-		background-color: white;
-	}
+hr{
+	margin: 1em 0;
+	width: 100%;
+	border: 0;
+	border-top: 1px solid #ccc;
 }

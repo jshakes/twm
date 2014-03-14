@@ -1,4 +1,10 @@
 // =======================
+// $Base
+// =======================
+@import "base/base";
+@import "base/normalize";
+
+// =======================
 // $Common
 // =======================
 @import "common/media-queries";
@@ -10,12 +16,6 @@
 @import "common/mixins";
 @import "common/classes";
 @import "common/icons";
-
-// =======================
-// $Base
-// =======================
-@import "base/base";
-@import "base/normalize";
 
 // =======================
 // $Layout
