@@ -1,5 +1,5 @@
 TWM.module("Playlist", function(Playlist, TWM, Backbone, Marionette, $, _){
-  
+
   // prevent starting with parent
   this.startWithParent = false;
 
@@ -46,16 +46,53 @@ TWM.module("Playlist", function(Playlist, TWM, Backbone, Marionette, $, _){
 
           var trackProgress = currentTime / trackData.duration * 100;
           $progressBar.width(trackProgress + "%");
+
+          // requestAnimationFrame Shim
+          (function() {
+            var requestAnimationFrame = window.requestAnimationFrame ||
+                                        window.mozRequestAnimationFrame ||
+                                        window.webkitRequestAnimationFrame ||
+                                        window.msRequestAnimationFrame;
+                                        window.requestAnimationFrame = requestAnimationFrame;
+          })();
+
+          var canvas = document.querySelector('.progress-circle');
+          var context = canvas.getContext('2d');
+          var x = canvas.width / 2;
+          var y = canvas.height / 2;
+          var radius = 75;
+          var endPercent = 105;
+          var curPerc = currentTime;
+          var circ = Math.PI * 2;
+          var quart = Math.PI / 2;
+
+          context.lineWidth = 2;
+          context.strokeStyle = '#222';
+
+          function animate(current) {
+           context.clearRect(0, 0, canvas.width, canvas.height);
+           context.beginPath();
+           context.arc(x, y, radius, -(quart), ((circ) * current) - quart, false);
+           context.stroke();
+           if (curPerc <= endPercent) {
+              requestAnimationFrame(function () {
+                animate(curPerc / Math.PI)
+              });
+            }
+          }
+
+          animate();
+
         }
         // Everything else should be 0
         else {
 
-          $progressBar.width(0); 
+          $progressBar.width(0);
         }
       });
     });
   }
-  
+
   Playlist.API = {
     /**
     * Load Player
@@ -80,8 +117,8 @@ TWM.module("Playlist", function(Playlist, TWM, Backbone, Marionette, $, _){
     }
   }
 
-  Playlist.on("start", function(){  
-    
+  Playlist.on("start", function(){
+
     var tracks = bootstrap || {};
     var playlist = TWM.request("newPlaylist:entities", tracks);
     // create a new playlist manager from the API.loadPlayer method
