@@ -37,7 +37,7 @@ module.exports = function(grunt){
           "./src/lib/backbone/backbone.js",
           "./src/lib/backbone.marionette/lib/backbone.marionette.js",
           "./src/lib/ejs/ejs.js",
-          "./src/lib/popcorn-complete.min.js"
+          "./src/popcorn-complete.min.js"
           ],
         dest: "./public/js/vendors.js"
       },
