@@ -47,6 +47,12 @@ exports.process_new_playlist = function(req, res){
 
 exports.playlist = function(req, res){
 
+  var io = require('socket.io').listen(1337);
+
+  io.sockets.on('connection', function (socket) {
+    socket.emit('userConnect', { userCount: io.sockets.clients().length });
+  });
+
   Playlist.findById(req.params.id, "-tracks._id", function(err, playlist){
     
     if (err){

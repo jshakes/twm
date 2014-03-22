@@ -6,7 +6,7 @@ TWM.module("Playlist.Create.TrackSearch", function(TrackSearch, TWM, Backbone, M
       var trackUrl = trackModel.get("url");
       var trackDuration = trackModel.get("duration");
       // Find the preview start and end times
-      var previewStart = Math.round(trackDuration / 2 - (previewDuration / 2));
+      var previewStart = 15;
       var previewEnd = Math.round(previewStart + previewDuration);
       // Create an $el to load our popcorn object into, if it doesn't already exist
       if(!$("#preview-embeds").length){
